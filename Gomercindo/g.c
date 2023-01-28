@@ -17,10 +17,9 @@ Item busca(Item *v, int x) {
 
 void poe_em_ordem(Item *v, int n) {
     Item p = v[0];
-
     for(int i = 1; i <= n; i++) {
         printf("%d\n", p.valor);
-        p = busca(v, p.prox);
+        p = busca(v, p.prox); // procura a proxima pista
     }
 }
 
@@ -30,11 +29,7 @@ int main(void) {
 
     Item v[N];
     for(int i = 0; i < N; i++) 
-        scanf("%d %d %d", &v[i].id, &v[i].valor, &v[i].prox);
+        scanf("%d %d %d", &v[i].id, &v[i].valor, &v[i].prox); // alimenta vetor de pistas
 
     poe_em_ordem(v, N);
-
-    /* for(int i = 0; i < N; i++) {  
-        printf("%d\n", po[i]);
-    } */
 }

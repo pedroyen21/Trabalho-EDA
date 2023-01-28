@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #define NOME_ARQUIVO "g"
+#define N_INPUTS 3
 
 int main() {
 
@@ -16,7 +17,7 @@ int main() {
         sprintf(comando, "gcc -Wall -Wextra -Wpedantic -O2 %s.c -o '%s'", NOME_ARQUIVO, NOME_ARQUIVO);
         system(comando);
 
-        printf("\n\nResposta: \n");
+        printf("\n\nOutput: \n");
         sprintf(comando, "./%s < ./inputs/%d.txt",NOME_ARQUIVO, i);
         system(comando);
         printf("-----------------------------------\n");

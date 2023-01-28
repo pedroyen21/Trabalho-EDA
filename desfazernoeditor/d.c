@@ -1,6 +1,3 @@
-// ideia: pilha de strings
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -64,13 +61,12 @@ int main(void) {
     char ins[12] = "inserir";
 
     while(scanf("%s", comando) == 1) {
-        if(strcmp(comando, ins) == 0) {
-            scanf(" ");
-            scanf("%[^\n]", linha);
-            empilha(&p, linha);
+        if(strcmp(comando, ins) == 0) { // se o comando for igual a "inserir"
+            scanf(" %[^\n]", linha); // guarda a linha 
+            empilha(&p, linha); // empilha a linha
         }
         else {
-            desempilha(&p);
+            desempilha(&p); // desempilha a linha
         }
     }
 
