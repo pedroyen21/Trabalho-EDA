@@ -1,0 +1,1 @@
+// ideia: pilha de strings
