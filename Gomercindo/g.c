@@ -8,21 +8,19 @@ typedef struct {
 
 typedef pista Item;
 
-int busca(int x, Item *v) {
+Item busca(Item *v, int x) {
     int j = 1;
     while(v[j].id != x && x != -1) 
         j++;
     return v[j];
 }
 
-void poe_em_ordem(Item *v, int *p, int n) {
-    p[0] = v[0].valor;
-    int prox = v[0].prox;
+void poe_em_ordem(Item *v, int n) {
+    Item p = v[0];
 
-    for(int i = 1; i < n; i++) {
-        Item k = busca(v, prox);
-        p[i] = v[j].valor;
-        prox = v[j].prox;
+    for(int i = 1; i <= n; i++) {
+        printf("%d\n", p.valor);
+        p = busca(v, p.prox);
     }
 }
 
@@ -34,10 +32,9 @@ int main(void) {
     for(int i = 0; i < N; i++) 
         scanf("%d %d %d", &v[i].id, &v[i].valor, &v[i].prox);
 
-    int po[N];
-    poe_em_ordem(v, po, N);
+    poe_em_ordem(v, N);
 
-    for(int i = 0; i < N; i++) {  
+    /* for(int i = 0; i < N; i++) {  
         printf("%d\n", po[i]);
-    }
+    } */
 }

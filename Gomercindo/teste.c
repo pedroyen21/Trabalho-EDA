@@ -2,10 +2,11 @@
 #include <stdio.h>
 
 #define NOME_ARQUIVO "g"
+#define N_INPUTS 2
 
 int main() {
 
-    for (int i = 1; i <= 1; i++) {
+    for (int i = 1; i <= N_INPUTS; i++) {
         char comando[50];
         char mostrarInput[50];
 

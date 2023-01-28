@@ -13,7 +13,7 @@ int main() {
         sprintf(mostrarInput, "cat ./inputs/%d.txt", i);
         system(mostrarInput);
         
-        sprintf(comando, "gcc -Wall -Wextra -Wpedantic -O2 c.c -o '%s'", NOME_ARQUIVO);
+        sprintf(comando, "gcc -Wall -Wextra -Wpedantic -O2 %s.c -o '%s'", NOME_ARQUIVO, NOME_ARQUIVO);
         system(comando);
 
         printf("\n\nResposta: \n");
