@@ -6,15 +6,14 @@
 
 int main() {
 
-    for (int i = 1; i <= 1; i++) {
-        char comando[50];
-        char mostrarInput[50];
+    char comando[70];
+    sprintf(comando, "gcc -Wall -Wextra -Wpedantic -O2 %s.c -o '%s'", NOME_ARQUIVO, NOME_ARQUIVO);
+    system(comando);
+    
+    for (int i = 1; i <= N_INPUTS; i++) {
 
         printf("Input:\n");
-        sprintf(mostrarInput, "cat ./inputs/%d.txt", i);
-        system(mostrarInput);
-        
-        sprintf(comando, "gcc -Wall -Wextra -Wpedantic -O2 %s.c -o '%s'", NOME_ARQUIVO, NOME_ARQUIVO);
+        sprintf(comando, "cat ./inputs/%d.txt", i);
         system(comando);
 
         printf("\n\nOutput: \n");
