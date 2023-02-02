@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define NOME_ARQUIVO "g"
+#define NOME_ARQUIVO "m"
 #define N_INPUTS 3
 
 int main() {
