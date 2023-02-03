@@ -5,7 +5,6 @@
 #define N_INPUTS 2
 
 int main() {
-
     char comando[3000];
     #ifdef __linux
     sprintf(comando, "gcc -fno-common -pipe -Werror -Wall -Wextra -Wvla   -Wpacked -Wcast-align -Wenum-compare -Wpointer-arith -Wunused -Wuninitialized -Winit-self -Winvalid-pch -Woverlength-strings -Woverflow -Wsequence-point -Wno-unknown-pragmas -Wtrigraphs -finput-charset=UTF-8 -Wpacked-bitfield-compat -Wlogical-op -Wsync-nand   -Wpointer-arith -O2 %s.c -o '%s'", NOME_ARQUIVO, NOME_ARQUIVO);

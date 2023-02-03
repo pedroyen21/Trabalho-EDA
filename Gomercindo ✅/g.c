@@ -8,18 +8,19 @@ typedef struct {
 
 typedef pista Item;
 
-Item busca(Item *v, int x) {
+Item busca_prox(Item *v, int x) {
     int j = 1;
-    while(v[j].id != x && x != -1) 
+    while(v[j].id != x) 
         j++;
     return v[j];
 }
 
-void poe_em_ordem(Item *v, int n) {
+void ordena_pistas(Item *v, int n) {
     Item p = v[0];
     for(int i = 1; i <= n; i++) {
         printf("%d\n", p.valor);
-        p = busca(v, p.prox); // procura a proxima pista
+        if(p.prox == -1) return;
+        p = busca_prox(v, p.prox); // procura a proxima pista
     }
 }
 
@@ -31,5 +32,5 @@ int main(void) {
     for(int i = 0; i < N; i++) 
         scanf("%d %d %d", &v[i].id, &v[i].valor, &v[i].prox); // alimenta vetor de pistas
 
-    poe_em_ordem(v, N);
+    ordena_pistas(v, N);
 }

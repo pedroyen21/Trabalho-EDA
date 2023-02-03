@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #define NOME_ARQUIVO "g"
-#define N_INPUTS 3
+#define N_INPUTS 2
 
 int main() {
 
