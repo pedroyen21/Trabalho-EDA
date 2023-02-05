@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define NOME_ARQUIVO "s"
-#define N_INPUTS 2
+#define N_INPUTS 5
 
 int main() {
     char comando[3000];
@@ -14,7 +14,7 @@ int main() {
     system(comando);
     
     for (int i = 1; i <= N_INPUTS; i++) {
-        printf("Input:\n");
+        printf("Input %d:\n", i);
 
         #ifdef __linux
         sprintf(comando, "cat ./inputs/%d.txt", i);
