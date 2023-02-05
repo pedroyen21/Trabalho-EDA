@@ -2,10 +2,9 @@
 #include <stdlib.h>
 
 #define NOME_ARQUIVO "g"
-#define N_INPUTS 3
+#define N_INPUTS 5
 
 int main() {
-
     char comando[70];
     #ifdef __linux
     sprintf(comando, "gcc -Wall -Wextra -Wpedantic -O2 %s.c -o '%s'", NOME_ARQUIVO, NOME_ARQUIVO);

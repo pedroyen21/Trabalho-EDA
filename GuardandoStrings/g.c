@@ -2,22 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CHAR 4194305
+#define MAX_CHAR 4194307
 
 int encontra(char *m, char *str) {
     int tam = strlen(str);
-    printf("[%s,%d]\n", str, tam);
+
+    printf("[%d,%s]\n", tam, str);
     int ap = 0;
     while(*m != '\0') {
-        if(strncmp(m, str, tam) == 0)
+        if(strncmp(m, str, tam) == 0) {
             ap++;
-        m += 1;
+            m += tam;
+        }
+        else 
+            m += 1;
     }
     return ap;
 }
 
 int main(void) {
-    char **m = malloc(100000);
+    char **m = malloc(100001);
     int i = -1;
     char *p = malloc(MAX_CHAR);
 
