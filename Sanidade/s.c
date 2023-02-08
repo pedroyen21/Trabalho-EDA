@@ -82,10 +82,11 @@ int main(void) {
         i++;
 
     
-    //O(n lg(n))
 
     Item p = v[0];
     Item u = v[1];
+    
+    //O(n lg(n))
     mergesort(v, 0, i-1);
     //O(n lg(n))
     if(verifica_sanidade(v, p, u, i))
