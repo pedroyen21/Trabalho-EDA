@@ -2,43 +2,38 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_CHAR 4194307
+#define MAX_CHAR 4194305
 
-int encontra(char *m, char *str) {
-    int tam = strlen(str);
-
-    printf("[%d,%s]\n", tam, str);
+void encontra(char *v, char *str) {
     int ap = 0;
-    while(*m != '\0') {
-        if(strncmp(m, str, tam) == 0) {
+    int l = strlen(str);
+    while(*v != '\0') {
+        if(*v == ' ') {
+            printf("%d\n", ap);
+            ap = 0;
+        }
+
+        if(strncmp(v, str, l) == 0) {
             ap++;
-            m += tam;
+            v += l;
         }
         else 
-            m += 1;
+            v += 1;
     }
-    return ap;
 }
 
 int main(void) {
-    char **m = malloc(100001);
-    int i = -1;
-    char *p = malloc(MAX_CHAR);
+    char *v = malloc(MAX_CHAR);
+    char *aux = malloc(MAX_CHAR);
 
-    while(scanf("%s", p) == 1) {
-        m[++i] = p;
-        p = malloc(MAX_CHAR);
+    while(scanf("%s", aux) == 1) {
+        strcat(v, aux);
+        strcat(v, " ");
     }
-
-    char *ultima = m[i];
-
-
-    for(int j = 0; j < i; j++) {
-        printf("%d\n", encontra(m[j], ultima));
-    }
-
-    /* for(int j = 0; j < i; j++) {
-        printf("%s\n", m[j]);
-    } */
+    v[strlen(v) -1] = '\0';
+    //printf("ultima->%s\n", aux);
+    //printf("v-> %s", v);
+    
+    encontra(v, aux);
 }
 
