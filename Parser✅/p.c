@@ -69,8 +69,8 @@ int bemformada(char *s) {
 int main ()
 {
     int n = 0, p = 0, i = 0;
-    char s[100001];
-    char aux[100001];
+    char *s = malloc(10000001);
+    char *aux = malloc(100001);
     scanf("%d",&n);
     if (n > 100)
     {
@@ -80,11 +80,11 @@ int main ()
     while(i != n)
     {
         getchar();
-        scanf("%[^\n]",s);
-        strcat(aux,s);
+        scanf("%[^\n]",aux);
+        strcat(s,aux);
         i++;
     }
-    p = bemformada(aux);
+    p = bemformada(s);
     if (p == 1)
     {
         printf("C\n");
