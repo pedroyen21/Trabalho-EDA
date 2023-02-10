@@ -41,8 +41,6 @@ int bemformada(char *s) {
 
     int i = 0,tam = 0;
     Item m = 0;
-    //printf("Entrou na funcao\n");
-    //printf("%s\n",s);
     tam = strlen(s);
     pilha_st p;
     inicializa(&p,tam);
@@ -53,15 +51,13 @@ int bemformada(char *s) {
             empilha(&p,s[i]);
             if (m == s[i])
             {
-                //printf("Entrou no if com M = %c\n", m);
+                
                 desempilha(&p);
                 desempilha(&p);
                 m = topo(&p);
-                //printf("Valor do topo2 com M = %c\n", m);
             }
             else{
                 m = topo(&p);
-                //printf("Valor do M na saida do Topo = %c\n", m);
 
             }
         }
@@ -73,9 +69,14 @@ int bemformada(char *s) {
 int main ()
 {
     int n = 0, p = 0, i = 0;
-    char s[100000];
-    char aux[100000] = {};
+    char s[100001];
+    char aux[100001];
     scanf("%d",&n);
+    if (n > 100)
+    {
+        return 0;
+    }
+    
     while(i != n)
     {
         getchar();
