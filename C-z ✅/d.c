@@ -42,6 +42,7 @@ int empilha(pilha_st *p, Item x) {
         printf("Pilha cheia\n");    
         return 0;
     }
+
 }
 
 void desempilha(pilha_st *p) {

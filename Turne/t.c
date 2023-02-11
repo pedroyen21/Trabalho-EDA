@@ -1,95 +1,104 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
-
+#define apresentashow {p = f->v[f->inicio];  printf("%s\n", p); u = ultimocaratere(p); desenfila(f); show = 1;} 
 
 typedef char Item[27];
 
-#define imprimeedesenfila { printf("%s\n", espia(f)); desenfila(f);}
+typedef struct {
+    Item **v;
+    int inicio;
+    int fim;
+    int tamanho;
+}fila;
 
-typedef struct fila_st{
-    Item *v;
-    int size;
-    int ini, fim, ocupado;
-}fila_st;
+int estacheia(fila *f) {
+    if(f->fim - f->inicio == f->tamanho)
+        return 1; 
+    else
+        return 0;
+}
+int estavazia(fila *f) {
+    if(f->inicio == f->fim)
+        return 1; 
+    else
+        return 0;
+}
+int enfila(fila *f, Item x) {
+    if( !estacheia(f) ) {
+        strncpy(f->v[f->fim++], x, 27);
+        return 1;
+    }
+    else printf("Fila cheia\n");
+    return 0;
+}
 
-int inicializa(fila_st *f, int s)
-{
-    f->v = malloc(sizeof(Item) * s);
-    if (f->v == NULL) return 0;
-    f->ocupado = 0;
-    f->ini = -1;
+void desenfila(fila *f) {
+    if( !estavazia(f) ) {
+        f->inicio++;
+    }
+    else printf("Fila vazia\n");
+}
+
+int inicializa_fila(fila *f, int t) {
+    f->inicio = 0;
     f->fim = 0;
-    f->size = s;
+    f->tamanho = t;
+    f->v = malloc(sizeof(Item) * t);
     return 1;
 }
 
-int enfila(fila_st *f, Item e)
-{
-    if (f->fim == f->ini) return 0;
-    strcpy(f->v[f->fim++], e);
-    f->fim = f->fim % f->size;
-    f->ocupado++;
-    return 1;
-}
-
-Item *espia(fila_st *f)
-{
-    return &f->v[(f->ini+1)%f->size];
-}
-
-int esta_vazia(fila_st *f)
-{
-    return f->ocupado == 0;
-}
-
-void desenfila(fila_st *f)
-{
-    f->ocupado--;
-    f->ini = (f->ini+1) % f->size;
-}
-
-
-char ultimocaratere(Item *v) {
-    while(*(v+1) != 0)
-        v++;
-    return *v[0];
-} 
-
-void coordena(fila_st *f) {
-    int show = 0;
-    char u = ultimocaratere(f->v);
-    imprimeedesenfila;
-
-    for(int i = f->ini + 1; i < f->fim; i++) {
-        if(show) {
-            u = ultimocaratere(f->v[i]);
-            printf("-----%s\n", f->v[i]);
-            imprimeedesenfila;
-            show = 0;
-        }
-        else {
-            if(f->v[0][0] == u) {
-                Item *p = espia(f);
-                u = ultimocaratere(p);
-                imprimeedesenfila;
-                enfila(f, p);
-                show = 1;
-            }
-
-        }
+void printafila(fila *f) {
+    for(int i = f->inicio; i < f->fim; i++) {
+        printf("%s\n", f->v[i]);
     }
 }
 
+
+char ultimocaratere(Item v) {
+    int i = 0;
+    while(v[i+1] != '\0') i++;
+
+    return v[i];
+}
+
+void coordena(fila *f) {
+    int show = 0;
+    char *p; 
+    char u;  
+    apresentashow;
+
+    int i = f->inicio;
+    while(!estavazia(f)) {
+        if(show) {
+            p = f->v[f->inicio];
+            if(tolower(*p) == tolower(u)) {
+                desenfila(f);
+                enfila(f, p);
+                show = 0;
+            }
+            else {
+                apresentashow;
+            }
+            
+        }
+        else 
+            apresentashow;
+        }
+        i++;
+    }
+
+
 int main(void) {
-    fila_st f;
-    inicializa(&f, 100000);
+    fila f;
+    inicializa_fila(&f, 100);
 
     Item palavra;
-    while(scanf("%27s", palavra) == 1)
+    while(scanf("%s", palavra) == 1)
         enfila(&f, palavra);
-    
+
     coordena(&f);
     
 }
