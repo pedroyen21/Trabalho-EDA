@@ -77,7 +77,4 @@ int main(void) {
         printf("%d\n", lidos);
         imprimeterreno(&ter);
 
-    
-
-
 }

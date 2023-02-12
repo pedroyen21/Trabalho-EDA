@@ -29,7 +29,7 @@ int main(void) {
     char *v = malloc(MAX_V);
 
     int tam_v = 0; // tamanho total do vetor
-    int tam_p; // tamanho da string a ser concatenada
+    int tam_p = 0; // tamanho da string a ser concatenada
 
     while(scanf("%s", v+tam_v) == 1) {
         tam_p = strlen(v+tam_v); // tamanho da string

@@ -5,6 +5,7 @@
 
 typedef int Item;
 
+// O(n)
 int median(Item *v, int l, int r) {
     int m = (r - l) / 2 + l;
     if ((v[m] <= v[l] && v[l] <= v[r]) || (v[r] <= v[l] && v[l] <= v[m])) return l;
@@ -25,21 +26,9 @@ int partition(Item *v, int l, int r) {
     return i + 1;
 }
 
-//O(n lg(n))
-void quicksort(Item *v, int l, int r) {
-    if(l >= r) return;
-    int med = median(v, l, r);
-    exch(v[med], v[r]);
-
-    int pivot = partition(v, l, r);
-
-    quicksort(v, l, pivot - 1);
-    quicksort(v, pivot + 1, r);
-}
-
 // O(lg(n))
 void quickselect(Item *v, int l, int r, int n) {
-    int med = median(v, l, r);
+    int med = median(v, l, r); // mediana de 3
     exch(v[med], v[r]);
 
     int j = partition(v, l, r);
@@ -50,16 +39,24 @@ void quickselect(Item *v, int l, int r, int n) {
         quickselect(v, l, j - 1, n);
 }
 
-Item *redimensiona(Item *v, long long *N) {
-    *N *= 2;
-    v = realloc(v, *N * sizeof(Item));
-    return v;
+// O(n) quando vetor esta quase ordenado ou ordenado
+void insertionsort(Item *v, int l, int r) {
+    long chave, j;
+    for(int i = l+1; i <= r; i++) {
+        chave = v[i];
+        j = i;
+        while(v[j - 1] > chave && j > 0) {
+            v[j] = v[j - 1];
+            j--;
+        } 
+        v[j] = chave;
+    }
 }
 
 void imprime_menores(Item *v, int n, int r) {
     quickselect(v, 0, r, n-1);
     
-    quicksort(v, 0, n-1);
+    insertionsort(v, 0, n-1);
 
     for(int i = 0; i < n; i++) printf("%d ", v[i]);
     
@@ -67,21 +64,22 @@ void imprime_menores(Item *v, int n, int r) {
 }
 
 int main(void) {
-    long long tamanho = 1000000000;
-    Item *v = malloc(sizeof(Item) * tamanho);
+    long  tam = 1000;
+    Item *v = malloc(sizeof(Item) * tam);
 
     int comando, n;
-    long long i = -1;
+    int i = -1;
+
     while(scanf("%d", &comando) == 1) {
         scanf("%d", &n);
         
         if(comando == 1) 
-            v[++i] = n;
+            v[++i] = n; // se o comando for 1, adiciona no vetor
         else
-            imprime_menores(v, n, i);
+            imprime_menores(v, n, i); // se o comando for 2, imprime os n menores elementos
 
-        if(i+1 == tamanho) 
-            v = redimensiona(v, &tamanho);
+        if(i+1 >= tam) 
+            tam *= 2, v = reallocarray(v, tam, sizeof(Item)); // aumenta o tamanho do vetor em 2x
     }
 
     free(v);   

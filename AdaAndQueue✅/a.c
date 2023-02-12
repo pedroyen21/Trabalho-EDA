@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//ideia: inverter os comandos em vez de inverter o vetor
+
 #define exch(A, B) {Item t = A; A = B; B = t;}
 
 int invertida = 0;
@@ -13,6 +15,7 @@ typedef struct {
     int fim;
     int tam;
 } lista;
+
 //O(1)
 int lista_vazia(lista *l) {
     return l->tam == 0;
@@ -29,6 +32,7 @@ void back(lista *l) {
         l->tam--;
     }
 }
+
 //front - Print number from front and then erase it
 //O(1)
 void front(lista *l) {
@@ -41,7 +45,7 @@ void front(lista *l) {
     }
 }
 //reverse - Reverses all elements in queue
-//O(n)
+//O(1)
 void reverse() {
     invertida = !invertida;
 }
@@ -64,12 +68,6 @@ void toFront(lista *l) {
     l->tam++;
 }
 
-void imprime_lista(lista *l) {
-    for(int i = l->inicio; i < l->fim; i++)
-        printf("[%d, %d] ",i, l->v[i]);
-    printf("\n");
-}
-
 int main(void) {
     int N;
     scanf("%d", &N);
@@ -84,7 +82,7 @@ int main(void) {
         char comando[20];
         scanf("%s ", comando);
         //printf("%s\n", comando);
-        switch (comando[0])
+        switch (comando[0]) // primeira letra do comando
         {
         case 'b':
             if(invertida)

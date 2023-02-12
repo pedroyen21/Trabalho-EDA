@@ -61,10 +61,10 @@ int binarysearch(Item *v, int l, int r, ull x) {
 
 //O(n lg(n))
 int verifica_sanidade(Item *v, Item p, Item f, int i) {
-
     while(1) {
         if(f.ant == p.este && f.este == p.prox)
             return 1;
+            
         int l = binarysearch(v, 0, i-1, p.prox);
 
         if(l == -1 || v[l].ant != p.este || p.prox != v[l].este) return 0;
@@ -81,13 +81,12 @@ int main(void) {
     while(scanf("%llx %llx %llx", &v[i].este, &v[i].ant, &v[i].prox) == 3)
         i++;
 
-    
-
     Item p = v[0];
     Item u = v[1];
     
     //O(n lg(n))
     mergesort(v, 0, i-1);
+
     //O(n lg(n))
     if(verifica_sanidade(v, p, u, i))
         printf("sana\n");
