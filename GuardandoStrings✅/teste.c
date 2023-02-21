@@ -5,16 +5,16 @@
 #define N_INPUTS 5
 
 int main() {
-    char comando[70];
+    char comando[1000];
     #ifdef __linux
-    sprintf(comando, "gcc -Wall -Wextra -Wpedantic -O2 %s.c -o '%s'", NOME_ARQUIVO, NOME_ARQUIVO);
+    sprintf(comando, "gcc -fno-common -pipe -Werror -Wall -Wextra -Wvla   -Wpacked -Wcast-align -Wenum-compare -Wpointer-arith -Wunused -Wuninitialized -Winit-self -Winvalid-pch -Woverlength-strings -Woverflow -Wsequence-point -Wno-unknown-pragmas -Wtrigraphs -finput-charset=UTF-8 -Wpacked-bitfield-compat -Wlogical-op -Wsync-nand   -Wpointer-arith -O2 %s.c -o '%s'", NOME_ARQUIVO, NOME_ARQUIVO);
     #else// colocar comando que compila
     sprintf(comando, "gcc -Wall -Wextra -Wpedantic -O2 %s.c -o '%s'", NOME_ARQUIVO, NOME_ARQUIVO);
     #endif
     system(comando);
     
     for (int i = 1; i <= N_INPUTS; i++) {
-        printf("Input:\n");
+        printf("Input %d:\n", i);
 
         #ifdef __linux
         sprintf(comando, "cat ./inputs/%d.txt", i);

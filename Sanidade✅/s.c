@@ -66,13 +66,18 @@ int verifica_sanidade(Item *v, Item p, Item f, int i) {
             return 1;
             
         int l = binarysearch(v, 0, i-1, p.prox);
-
+        printf("Elemento encontrado na busca: [%llx, %llx, %llx]\n", v[l].este, v[l].ant, v[l].prox);
         if(l == -1 || v[l].ant != p.este || p.prox != v[l].este) return 0;
         p = v[l];
     }
     return 1;
 }
 
+void imprime(Item *v, int i) {
+    for(int j = 0; j < i; j++)
+        printf("[%llx, %llx, %llx]\n", v[j].este, v[j].ant, v[j].prox);
+    
+}
 int main(void) {
     Item *v = malloc(sizeof(Item) * 200000);
     int i = 0;
@@ -81,17 +86,22 @@ int main(void) {
     while(scanf("%llx %llx %llx", &v[i].este, &v[i].ant, &v[i].prox) == 3)
         i++;
 
+    printf("Vetor alimentado\n");
+    imprime(v, i);
     Item p = v[0];
     Item u = v[1];
     
     //O(n lg(n))
     mergesort(v, 0, i-1);
 
+    printf("Vetor ordenado\n");
+    imprime(v, i);
     //O(n lg(n))
     if(verifica_sanidade(v, p, u, i))
         printf("sana\n");
     else    
         printf("insana\n");
+
 
 }
 
