@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TAM 1000
+#define TAM 1000 // Tamanho grande definido
 
 typedef char Item[101];
 
@@ -45,7 +45,7 @@ int empilha(pilha_st *p, Item x) {
 
 }
 
-void desempilha(pilha_st *p) {
+void desempilha(pilha_st *p) { //Alteração q já vai printando
     if(!pilhavazia(p)) 
         printf("%s\n" ,p->v[--p->topo]);
     else {
@@ -54,14 +54,14 @@ void desempilha(pilha_st *p) {
 }
 
 int main(void) {
-    pilha_st p;
-    inicializa_pilha(&p, TAM);
+    pilha_st p; //crio a estrutura de pilha
+    inicializa_pilha(&p, TAM); //inicioalizo com esse tamanho
 
     Item linha;
-    char comando[12];
+    char comando[12]; 
     char ins[12] = "inserir";
 
-    while(scanf("%s", comando) == 1) {
+    while(scanf("%s", comando) == 1) { 
         if(strcmp(comando, ins) == 0) { // se o comando for igual a "inserir"
             scanf(" %[^\n]", linha); // guarda a linha 
             empilha(&p, linha); // empilha a linha

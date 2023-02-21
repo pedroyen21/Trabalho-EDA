@@ -60,10 +60,10 @@ int tamanho(cabeca_st *h) {
 int main() {
     
     int teste;
-    while(scanf("%d",&teste) && teste!=0)
+    while(scanf("%d",&teste) && teste != 0)
     {
         int rua = 1;
-        int reordenados =1;
+        int reordenados = 1;
         int caminhoes;
         cabeca_st cab;
         inicializaLista(&cab);
